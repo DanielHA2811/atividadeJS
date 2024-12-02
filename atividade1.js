@@ -16,30 +16,19 @@ let indiceDaFotoAtual = 0;
 let imagemEl = document.querySelector('#slide');
 let anteriorEl = document.querySelector('#anterior');
 let proximoEl = document.querySelector('#proximo');
-if (indiceDaFotoAtual=0){
-  anteriorEl.disabled = true;
-}
-if (indiceDaFotoAtual=indiceDaFotoAtual.length){
-  proximoEl.disabled = true;
-}
-anteriorEl.addEventListener('click', function() {
-  if (indiceDaFotoAtual = 0){
-    indiceDaFotoAtual = nomesDasImagens.length;
+function action(el) {
+  indiceDaFotoAtual = indiceDaFotoAtual + el;
+  if (indiceDaFotoAtual < 0) {
+    indiceDaFotoAtual = 4;
   }
-  else{
-    indiceDaFotoAtual--;
-  }
-  imagemEl.src=nomesDasImagens[indiceDaFotoAtual];
-})
-proximoEl.addEventListener('click', function() {
-  if (indiceDaFotoAtual = nomesDasImagens.length){
+  else if (indiceDaFotoAtual > 4) {
     indiceDaFotoAtual = 0;
   }
-  else{
-    indiceDaFotoAtual++;
-  }
-  imagemEl.src=nomesDasImagens[indiceDaFotoAtual];
-})
+  imagemEl.src = 'http://fegemo.github.io/cefet-front-end/images/01-philae-parts.jpg' + nomesDasImagens[indiceDaFotoAtual];
+}
+
+proximoEl.addEventListener('click', () => action(1));
+anteriorEl.addEventListener('click', () => action(-1));
 
 
 
